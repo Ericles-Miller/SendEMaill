@@ -1,4 +1,3 @@
-import { Users } from "@prisma/client";
 import { AppError } from "@shared/errors/AppError";
 import { User } from "Entities/User";
 import { inject, injectable } from "inversify";
