@@ -2,7 +2,6 @@ import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-
 export class Mailer {
   async execute() : Promise<nodemailer.Transporter<SMTPTransport.SentMessageInfo>> {
     const oAuth2Client = new google.auth.OAuth2(

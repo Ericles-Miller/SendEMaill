@@ -36,6 +36,7 @@ export class CreateUsersUseCase {
       if(error instanceof AppError) {
         throw error
       }
+      console.log(error);
       throw new AppError('Unexpected server error!', 500);
     }
     

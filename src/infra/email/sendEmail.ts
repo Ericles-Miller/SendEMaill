@@ -1,10 +1,10 @@
 import { EmailOptions } from "@entities/Email/EmailOptions";
 import { AppError } from "@shared/errors/AppError";
-import { transporter } from "jobs/EmailProvider";
+import { Mailer } from "jobs/EmailProvider";
 
 export async function sendEmail(email: string) : Promise<void> {
-  const subject = 'Test subject email';
-  const text = 'this is text email to text';
+  const subject = 'oi Hannaaa estou passando aqui pra mostrar que sou um programer';
+  const text = 'eu sei programar viu hanna';
   const from = process.env.EMAIL_LOGIN; 
   const to = email;
   
@@ -14,7 +14,11 @@ export async function sendEmail(email: string) : Promise<void> {
 
   const emailOptions = new EmailOptions(to, subject,text,from);
 
-  transporter.sendMail(emailOptions, function(err, data) {
+  const mailer = new Mailer();
+
+  const transporter = await mailer.execute();
+  
+  (await transporter).sendMail(emailOptions, function(err, data) {
     if (err) {
       console.log("Error " + err);
     } else {
