@@ -1,13 +1,13 @@
 import "reflect-metadata";
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
-import { AppError } from "@shared/errors/AppError";
 import * as path from 'path'; 
 import * as fs from 'fs';
 import * as https from 'https';
 
 import { router } from "./router";
 import cors from "cors";
+import { AppError } from "shared/errors/AppError";
 
 export const app = express();
 
