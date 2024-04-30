@@ -1,7 +1,7 @@
-import { AppError } from "@shared/errors/AppError";
-import { User } from "Entities/User";
 import { inject, injectable } from "inversify";
-import { IUsersRepository } from "Repositories/IUsersRepository";
+import { IUsersRepository } from "@repositories/IUsersRepository";
+import { AppError } from "@shared/errors/AppError";
+import { User } from "@entities/User";
 
 interface IRequestDTO {
   name: string;
@@ -11,7 +11,7 @@ interface IRequestDTO {
 
 
 @injectable()
-export class UsersService {
+export class CreateUsersUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
