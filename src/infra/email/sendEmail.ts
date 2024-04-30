@@ -3,8 +3,8 @@ import { AppError } from "@shared/errors/AppError";
 import { Mailer } from "jobs/EmailProvider";
 
 export async function sendEmail(email: string) : Promise<void> {
-  const subject = 'oi Hannaaa estou passando aqui pra mostrar que sou um programer';
-  const text = 'eu sei programar viu hanna';
+  const subject = 'Test subject email';
+  const text = 'this is text email to text';
   const from = process.env.EMAIL_LOGIN; 
   const to = email;
   
