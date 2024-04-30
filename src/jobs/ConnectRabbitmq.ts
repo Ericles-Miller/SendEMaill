@@ -1,4 +1,4 @@
-import { EmailOptions } from '@entities/Email/EmailContent';
+import { EmailOptions } from '@entities/Email/EmailOptions';
 import * as amqp from 'amqplib/callback_api';
 
 
