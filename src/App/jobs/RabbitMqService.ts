@@ -2,7 +2,7 @@ import { EmailOptions } from '@entities/Email/EmailOptions';
 import * as amqp from 'amqplib/callback_api';
 
 
-export class RabbitMq {
+export class RabbitMqService {
   async connection(emailOptions: EmailOptions) {
     amqp.connect('amqp://localhost', (error0, connection) => {
       if (error0) {

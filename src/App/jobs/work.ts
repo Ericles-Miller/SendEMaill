@@ -1,5 +1,4 @@
 import * as amqp from 'amqplib/callback_api';
-import { transporter } from './EmailProvider';
 
 amqp.connect('amqp://localhost', (error0, connection) => {
   if (error0) {

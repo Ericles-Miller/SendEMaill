@@ -4,7 +4,7 @@ import { UsersRepository } from "@repositories/UsersRepository";
 import { prisma } from "shared/infra/database";
 import { Container } from "inversify";
 import { BaseRepository } from "@repositories/BaseRepository";
-import { CreateUsersUseCase } from "@controllers/CreateUsersUseCase";
+import { CreateUsersUseCase } from "API/controllers/CreateUsersUseCase";
 
 export const container = new Container();
 

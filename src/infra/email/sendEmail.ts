@@ -1,6 +1,6 @@
 import { EmailOptions } from "@entities/Email/EmailOptions";
 import { AppError } from "@shared/errors/AppError";
-import { Mailer } from "jobs/EmailProvider";
+import { Mailer } from "App/jobs/EmailProvider";
 
 export async function sendEmail(email: string) : Promise<void> {
   const subject = 'Test subject email';

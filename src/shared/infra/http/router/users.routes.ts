@@ -1,4 +1,4 @@
-import { CreateUsersController } from "@controllers/CreateUsersController";
+import { CreateUsersController } from "API/controllers/CreateUsersController";
 import { Router } from "express";
 
 
