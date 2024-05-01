@@ -1,4 +1,4 @@
-import { EmailOptions } from "@entities/Email/EmailOptions";
+import { EmailOptions } from "@Domain/entities/Email/EmailOptions";
 import { AppError } from "@shared/errors/AppError";
 import { Mailer } from "App/jobs/EmailProvider";
 
