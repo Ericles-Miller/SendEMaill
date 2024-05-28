@@ -1,35 +1,26 @@
-import * as amqp from 'amqplib/callback_api';
-import { transporter } from './EmailProvider';
+import { EmailQueue } from './EmailQueue';
+import { Mailer } from './Mailer';
 
-amqp.connect('amqp://localhost', (error0, connection) => {
-  if (error0) {
-    throw error0;
+const mailer = new Mailer();
+
+async function processEmail(email: string): Promise<void> {
+  try {
+    await mailer.execute(); // Configure o transporte Nodemailer
+    // Lógica para enviar o e-mail aqui
+    console.log(`Email enviado para: ${email}`);
+  } catch (error) {
+    console.error(`Erro ao enviar e-mail para: ${email}`, error);
   }
-  connection.createChannel((error1, channel) => {
-    if (error1) {
-      throw error1;
+}
+
+const emailQueue = EmailQueue.getInstance();
+
+emailQueue.init().then(() => {
+  emailQueue.channel.consume('email_queue', async (msg) => {
+    if (msg !== null) {
+      const email = msg.content.toString();
+      await processEmail(email);
+      emailQueue.channel.ack(msg); // Confirma o processamento da mensagem
     }
-
-    const queue = 'fila_de_emails';
-
-    channel.assertQueue(queue, {
-      durable: false
-    });
-
-    console.log(" [*] Esperando mensagens na fila. Para sair, pressione CTRL+C");
-
-    channel.consume(queue, (msg) => {
-      const emailDetails = JSON.parse(msg.content.toString());
-
-      transporter.sendMail(emailDetails, (error, info) => {
-        if (error) {
-          console.error('Erro ao enviar e-mail:', error);
-        } else {
-          console.log('E-mail enviado:', info.response);
-        }
-      });
-    }, {
-      noAck: true
-    });
   });
 });

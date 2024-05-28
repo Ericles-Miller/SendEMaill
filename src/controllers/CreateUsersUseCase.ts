@@ -25,12 +25,11 @@ export class CreateUsersUseCase {
     if(userAlreadyExists) {
       throw new AppError('user already exists with email!', 400);
     }
+
+    const user = new User(name, email, password); 
+    await this.usersRepository.create(user);
     
     await sendEmail(email);
-
-    const user = new User(name, email, password);    
-    await this.usersRepository.create(user);
-
 
     } catch (error) {
       if(error instanceof AppError) {

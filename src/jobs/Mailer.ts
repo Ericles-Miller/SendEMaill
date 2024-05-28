@@ -15,7 +15,7 @@ export class Mailer {
     const ACCESS_TOKEN = await oAuth2Client.getAccessToken();
     
     const transporter = nodemailer.createTransport({
-     service: "gmail",
+     service: 'gmail',
       auth: {
         user: process.env.EMAIL_LOGIN,
         pass: process.env.EMAIL_PASSWORD,
