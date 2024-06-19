@@ -3,6 +3,7 @@ import { IUsersRepository } from "@repositories/IUsersRepository";
 import { AppError } from "@shared/errors/AppError";
 import { User } from "@entities/User";
 import { sendEmail } from "infra/email/sendEmail";
+import { addEmailToQueue } from "jobs/producer";
 
 interface IRequestDTO {
   name: string;
@@ -29,7 +30,7 @@ export class CreateUsersUseCase {
     const user = new User(name, email, password); 
     await this.usersRepository.create(user);
     
-    await sendEmail(email);
+    addEmailToQueue(email);
 
     } catch (error) {
       if(error instanceof AppError) {
